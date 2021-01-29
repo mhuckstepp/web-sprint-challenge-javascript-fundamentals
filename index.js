@@ -27,13 +27,15 @@ myFunction();
 For example, `summation(4)` should return 10 because 1+2+3+4 is 10. Note, you may use a for loop for this function if you wish */
 
 // re-write as average
-function summation(num) {
-  let counter = 0;
-  for (let i = num; i > 0; i--) {
-    counter += i;
-  }
-  return counter;
-}
+// function summation(num) {
+//   let counter = 0;
+//   for (let i = num; i > 0; i--) {
+//     counter += i;
+//   }
+//   return counter;
+// }
+
+const summation = (num) => num * (num / 2 + 0.5);
 
 // 🦁🦁🦁 Topic 2: ADVANCED Array Methods 🦁🦁🦁
 // Given this zoo data from around the United States, follow the instructions below. Use the specific array methods in the requests below to solve the problems.
@@ -107,13 +109,23 @@ const zooAnimals = [
   displayNames will be an array of strings, and each string should follow this pattern: "name: {name}, scientific: {scientific name}"
   */
 
+// function animalNames(data) {
+//   let displayNames = [];
+//   data.forEach((element) => {
+//     displayNames.push(
+//       `name: ${element.animal_name}, scientific: ${element.scientific_name}`
+//     );
+//   });
+//   return displayNames;
+// }
+
 function animalNames(data) {
   let displayNames = [];
-  data.forEach((element) => {
+  data.forEach((element) =>
     displayNames.push(
       `name: ${element.animal_name}, scientific: ${element.scientific_name}`
-    );
-  });
+    )
+  );
   return displayNames;
 }
 
@@ -123,20 +135,21 @@ function animalNames(data) {
   For example: ['jackal, asiatic', .....]
   */
 
-function lowerCaseNames(data) {
-  let lowerCaseNames = data.map((element) => element.animal_name.toLowerCase());
-  return lowerCaseNames;
-}
+// function lowerCaseNames(data) {
+//   let lowerCaseNames = data.map(element => element.animal_name.toLowerCase());
+//   return lowerCaseNames;
+// }
+
+const lowerCaseNames = (data) =>
+  data.map((element) => element.animal_name.toLowerCase());
 
 /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
   The zoo is concerned about animals with a lower population count. 
   Using lowPopulationAnimals use .filter() to create a new array of objects which contains only the animals with a population of less than 5.
   */
 
-function lowPopulationAnimals(data) {
-  let lowPopulationAnimals = data.filter((element) => element.population < 5);
-  return lowPopulationAnimals;
-}
+const lowPopulationAnimals = (data) =>
+  data.filter((element) => element.population < 5);
 
 /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
   The zoo needs to know their total animal population across the United States. 
@@ -144,10 +157,8 @@ function lowPopulationAnimals(data) {
   Remember the reduce method takes two arguments: a callback (which itself takes two args - the accumulator and the item), and an initial value for the count.
   */
 
-function USApop(data) {
-  let USApop = data.reduce((total, element) => total + element.population, 0);
-  return USApop;
-}
+const USApop = (data) =>
+  data.reduce((total, element) => total + element.population, 0);
 
 // 🦁🦁🦁 Callbacks 🦁🦁🦁
 /* 🦁🦁🦁 Step 1: Create a higher-order function 🦁🦁🦁
@@ -157,28 +168,25 @@ function USApop(data) {
  * The consume function should return the invocation of cb, passing a and b into cb as arguments
  */
 
-function consume(a, b, cb) {
-  return cb(a, b);
-}
+// function consume(a, b, cb) {
+//   return cb(a, b);
+// }
+
+const consume = (a, b, cb) => cb(a, b);
 
 /* 🦁🦁🦁 Step 2: Create several functions to callback with consume(); 🦁🦁🦁 */
 // 🦁🦁🦁 Use add to return the sum of two numbers 🦁🦁🦁
 
-function add(a, b) {
-  return a + b;
-}
+const add = (a, b) => a + b;
 
 // 🦁🦁🦁 Use multiply to return the product of two numbers 🦁🦁🦁
 
-function multiply(a, b) {
-  return a * b;
-}
+const multiply = (a, b) => a * b;
 
 // 🦁🦁🦁 Use greeting to accept a first and last name and return "Hello {first-name} {last-name}, nice to meet you!" 🦁🦁🦁
 
-function greeting(nameFirst, nameLast) {
-  return `Hello ${nameFirst} ${nameLast}, nice to meet you!`;
-}
+const greeting = (nameFirst, nameLast) =>
+  `Hello ${nameFirst} ${nameLast}, nice to meet you!`;
 
 // 🦁🦁🦁 Step 3: Check your work by un-commenting the following calls to consume(): 🦁🦁🦁
 // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
@@ -225,8 +233,8 @@ CuboidMaker.prototype.surfaceArea = function () {
   Create an object called cuboid that uses the new keyword to use our CuboidMaker constructor
   Add properties and values of length: 4, width: 5, and height: 5 to cuboid. */
 
-const cuboid = new CuboidMaker(4, 5, 5);
-console.log(cuboid.length);
+const cuboid = new CuboidMaker({ length: 4, width: 5, height: 5 });
+console.log(cuboid);
 console.log(cuboid.width);
 console.log(cuboid.height);
 
@@ -256,7 +264,7 @@ class CuboidMakerTwo {
   }
 }
 
-const cuboidTwo = new CuboidMakerTwo(4, 5, 5);
+const cuboidTwo = new CuboidMakerTwo({ length: 4, width: 5, height: 5 });
 
 console.log(cuboid);
 console.log(cuboidTwo);
@@ -265,6 +273,17 @@ console.log(cuboidTwo);
 // console.log(cuboidTwo.surfaceArea()); // 130
 
 // 🦄 💪 Stretch Task: Extend the base class CuboidMaker with a sub class called CubeMaker.  Find out the formulas for volume and surface area for cubes and create those methods using the dimension properties from CuboidMaker.  Test your work by logging out your volume and surface area. 🦄 💪
+
+class CubeMaker extends CuboidMakerTwo {
+  constructor(obj) {
+    super(obj);
+  }
+}
+
+const cubethree = new CubeMaker({ length: 4, width: 5, height: 5 });
+
+console.log(cubethree);
+console.log(cubethree.surfaceArea());
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo() {
