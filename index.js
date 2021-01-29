@@ -26,10 +26,10 @@ myFunction();
     
 For example, `summation(4)` should return 10 because 1+2+3+4 is 10. Note, you may use a for loop for this function if you wish */
 
-// re-write as average 
-function summation(num) { 
+// re-write as average
+function summation(num) {
   let counter = 0;
-  for (let i = num; i > 0 ; i--){
+  for (let i = num; i > 0; i--) {
     counter += i;
   }
   return counter;
@@ -109,8 +109,10 @@ const zooAnimals = [
 
 function animalNames(data) {
   let displayNames = [];
-  data.forEach(element => {
-    displayNames.push(`name: ${element.animal_name}, scientific: ${element.scientific_name}`)
+  data.forEach((element) => {
+    displayNames.push(
+      `name: ${element.animal_name}, scientific: ${element.scientific_name}`
+    );
   });
   return displayNames;
 }
@@ -122,8 +124,8 @@ function animalNames(data) {
   */
 
 function lowerCaseNames(data) {
-  let lowerCaseNames = [];
-  data.map((element) => )
+  let lowerCaseNames = data.map((element) => element.animal_name.toLowerCase());
+  return lowerCaseNames;
 }
 
 /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
@@ -131,8 +133,9 @@ function lowerCaseNames(data) {
   Using lowPopulationAnimals use .filter() to create a new array of objects which contains only the animals with a population of less than 5.
   */
 
-function lowPopulationAnimals(/*Your Code Here*/) {
-  /*Your Code Here*/
+function lowPopulationAnimals(data) {
+  let lowPopulationAnimals = data.filter((element) => element.population < 5);
+  return lowPopulationAnimals;
 }
 
 /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
@@ -141,8 +144,9 @@ function lowPopulationAnimals(/*Your Code Here*/) {
   Remember the reduce method takes two arguments: a callback (which itself takes two args - the accumulator and the item), and an initial value for the count.
   */
 
-function USApop(/*Your Code Here*/) {
-  /*Your Code Here*/
+function USApop(data) {
+  let USApop = data.reduce((total, element) => total + element.population, 0);
+  return USApop;
 }
 
 // 🦁🦁🦁 Callbacks 🦁🦁🦁
@@ -153,27 +157,27 @@ function USApop(/*Your Code Here*/) {
  * The consume function should return the invocation of cb, passing a and b into cb as arguments
  */
 
-function consume(/*Your Code Here */) {
-  /*Your Code Here */
+function consume(a, b, cb) {
+  return cb(a, b);
 }
 
 /* 🦁🦁🦁 Step 2: Create several functions to callback with consume(); 🦁🦁🦁 */
 // 🦁🦁🦁 Use add to return the sum of two numbers 🦁🦁🦁
 
-function add(/*Your Code Here */) {
-  /*Your Code Here*/
+function add(a, b) {
+  return a + b;
 }
 
 // 🦁🦁🦁 Use multiply to return the product of two numbers 🦁🦁🦁
 
-function multiply(/*Your Code Here */) {
-  /*Your Code Here */
+function multiply(a, b) {
+  return a * b;
 }
 
 // 🦁🦁🦁 Use greeting to accept a first and last name and return "Hello {first-name} {last-name}, nice to meet you!" 🦁🦁🦁
 
-function greeting(/*Your Code Here */) {
-  return; /*Your Code Here */
+function greeting(nameFirst, nameLast) {
+  return `Hello ${nameFirst} ${nameLast}, nice to meet you!`;
 }
 
 // 🦁🦁🦁 Step 3: Check your work by un-commenting the following calls to consume(): 🦁🦁🦁
@@ -189,8 +193,10 @@ function greeting(/*Your Code Here */) {
 /* 🐴🐴🐴 Step 1: Base Constructor 🐴🐴🐴
  Use the constructor function named CuboidMaker to accept properties for length, width, and height which can be initialized as an object
 */
-function CuboidMaker(/*Your Code Here */) {
-  /*Your Code Here */
+function CuboidMaker(length, width, height) {
+  this.length = length;
+  this.height = height;
+  this.width = width;
 }
 
 /* 🐴🐴🐴 Step 2: Volume Method 🐴🐴🐴
